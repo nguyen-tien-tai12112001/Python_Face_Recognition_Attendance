@@ -1,0 +1,115 @@
+{% extends "layouts/base-admin.html" %}
+
+{% block title %} Add Student {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Thêm sinh viên mới</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Quản lý sinh viên</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Thêm sinh viên mới</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Nhập thông tin giáo viên mới vào Form dưới</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5>Thông tin giáo viên</h5>
+                                <hr>
+                                {% if success %}
+                                <span class="mb-0 text-muted" style="color: mediumspringgreen;">
+                                    {% if msg %}
+                                    <div class="i-block" data-clipboard-text="feather icon-check" data-filter="feather icon-check"  data-toggle="tooltip" title="">
+                                        <a style="color: mediumspringgreen;" class="feather icon-check">{{ msg | safe }}</a>
+                                    </div>
+                                    {% endif %} 
+                                </span>
+                                {% else %}
+                                <span class="mb-0 text-muted" style="color: maroon;">
+                                    {% if msg %}
+                                    <div class="i-block" data-clipboard-text="feather icon-x" data-filter="feather icon-x"  data-toggle="tooltip" title="">
+                                        <a style="color: maroon;" class="feather icon-x">{{ msg | safe }}</a>
+                                    </div>
+                                    {% endif %} 
+                                </span>
+                                
+                                
+                                {% endif %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    
+                                        <form role="form" method="post" action="">
+                                            {{ form.hidden_tag() }}  
+                                            <div class="form-group">
+                                                <label>Mã giáo viên</label>
+                                                {{ form.msv(placeholder="Mã giáo viên", class="form-control") }}
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Họ và tên giáo viên</label>
+                                                {{ form.name(placeholder="Họ và tên", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Số điện thoại</label>
+                                                {{ form.phone(placeholder="Số điện thoại", class="form-control") }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                {{ form.email(placeholder="Email", class="form-control", type="email") }}
+                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Ngày tháng năm sinh</label>
+                                                {{ form.DOBs(placeholder="", class="form-control", type="date") }}
+                                            </div>
+                                    
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Lớp</label>
+                                                {{ form.classes(placeholder="Lớp", class="form-control", type="role") }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Ảnh</label>
+                                                {{ form.img(placeholder="Link Ảnh", class="form-control") }}
+                                            </div>
+                                            <button type="submit" name="add_student" class="btn btn-primary">Submit</button>
+                                        </form>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

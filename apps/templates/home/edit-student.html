@@ -1,0 +1,117 @@
+{% extends "layouts/base-admin.html" %}
+
+{% block title %} Edit student {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Sửa thông tin sinh viên</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Quản lý sinh viên</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Sửa thông tin sinh viên</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Sửa thông tin sinh viên vào Form dưới</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5>Thông tin sinh viên</h5>
+                                <hr>
+                                {% if success %}
+                                <span class="mb-0 text-muted" style="color: mediumspringgreen;">
+                                    {% if msg %}
+                                    <a type="button" class="btn btn-info" title="Quay về danh sách sinh viên" href="{{ url_for('home_blueprint.list_student') }}" data-toggle="tooltip">⟳ Quay lại</a>
+                                    <div class="i-block" data-clipboard-text="feather icon-check" data-filter="feather icon-check"  data-toggle="tooltip" title="">
+                                        <a style="color: mediumspringgreen;" class="feather icon-check">{{ msg | safe }}</a>
+                                    </div>
+                                    
+                                    {% endif %} 
+                                </span>
+                                {% else %}
+                                <span class="mb-0 text-muted" style="color: maroon;">
+                                    {% if msg %}
+                                    <div class="i-block" data-clipboard-text="feather icon-x" data-filter="feather icon-x"  data-toggle="tooltip" title="">
+                                        <a style="color: maroon;" class="feather icon-x">{{ msg | safe }}</a>
+                                    </div>
+                                    {% endif %} 
+                                </span>
+                                
+                                
+                                {% endif %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    
+                                        <form role="form" method="post" action="">
+                                            {{ form.hidden_tag() }}  
+                                            <div class="form-group">
+                                                <label>Mã sinh viên</label>
+                                                {{ form.msv(placeholder="Mã sinh viên", class="form-control", value=student.msv) }}
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Họ và tên sinh viên</label>
+                                                {{ form.name(placeholder="Họ và tên", class="form-control", value=student.name) }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Số điện thoại</label>
+                                                {{ form.phone(placeholder="Số điện thoại", class="form-control", value=student.phone) }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                {{ form.email(placeholder="Email", class="form-control", type="email", value=student.email) }}
+                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Ngày tháng năm sinh</label>
+                                                {{ form.DOBs(placeholder="", class="form-control", type="date", value=student.DOBs) }}
+                                            </div>
+                                    
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Lớp</label>
+                                                {{ form.classes(placeholder="Lớp", class="form-control", type="role", value=student.classes) }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Ảnh</label>
+                                                {{ form.img(placeholder="Link Ảnh", class="form-control", value=student.img) }}
+                                            </div>
+                                            <button type="submit" name="edit_student" class="btn btn-primary">Submit</button>
+                                        </form>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

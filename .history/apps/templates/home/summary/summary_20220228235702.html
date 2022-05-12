@@ -1,0 +1,94 @@
+
+{% extends "layouts/base-admin.html" %}
+
+{% block title %} Summary {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Summary</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Thống kê</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Tổng kết môn học</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    
+                    <!-- [ stiped-table ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+    
+                            
+                            <div class="card-block table-border-style">
+                                
+                                <div class="table-responsive">
+                                    
+                                    <form action="/summary_study" method="post" class="row">
+                                        
+                                        <button type="submit" name="study_summary" class="btn btn-info" title="Tổng kết" data-toggle="tooltip" style="margin-left: 10px;">Tổng kết</button>
+                                        {% if msg %}
+                                        <button type="submit" name="delete_summary" class="btn btn-danger" title="Xóa Tổng kết" data-toggle="tooltip" style="margin-left: 10px;">Xóa Tổng kết</button>
+                                        {% endif %}
+                                    </form>
+                                    
+                                    
+                                    
+                                    <br>
+                                    <br>
+                                    {% if msg %}
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <td>STT</td>
+                                            <td>Mã lịch học</td>
+                                           <td>Mã sinh viên</td>
+                                           <td>Số lần đi học</td>
+                                           <td>Được thi/Không được thi</td>
+                                           
+                                        </thead>
+                                            {% for info in rows %}
+                                                <tr>
+                                                    {% for i in info%}
+                                                    <td>{{ i }}</td>
+                                                    {% endfor % }
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                     </table>
+                                     {% endif %}
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- [ stiped-table ] end -->
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

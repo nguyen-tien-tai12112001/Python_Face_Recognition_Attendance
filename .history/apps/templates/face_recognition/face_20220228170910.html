@@ -1,0 +1,43 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}   
+
+    <div class="auth-wrapper">
+        <div class="auth-content" style="width: 900px;">
+            <div class="auth-bg">
+                <span class="r"></span>
+                <span class="r s"></span>
+                <span class="r s"></span>
+                <span class="r"></span>
+            </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="">
+                        <div class="">
+                            <div class="">
+                               
+                                    <h3 class="">Attendance</h3>
+                                    <img src="{{ url_for('authentication_blueprint.video_feed(classId)') }}" width="70%">
+                                    <br>
+                                    <br>
+                                    
+                                    <a type="button" href="/end" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">Kết thúc</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+{% block javascripts %} 
+<script>
+    function myFunction() {
+        Session["controlID"] ="This is my session";
+    }
+</script>
+{% endblock javascripts %}

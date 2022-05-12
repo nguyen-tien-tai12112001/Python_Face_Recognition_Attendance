@@ -1,0 +1,122 @@
+{% extends "layouts/base-admin.html" %}
+
+{% block title %} Add Student {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Thêm sinh viên mới</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Lớp học</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Lịch học</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Nhập thông tin lịch học mới vào Form dưới</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5>Thông tin lịch học</h5>
+                                <hr>
+                                {% if success %}
+                                <span class="mb-0 text-muted" style="color: mediumspringgreen;">
+                                    {% if msg %}
+                                    <div class="i-block" data-clipboard-text="feather icon-check" data-filter="feather icon-check"  data-toggle="tooltip" title="">
+                                        <a style="color: mediumspringgreen;" class="feather icon-check">{{ msg | safe }}</a>
+                                    </div>
+                                    {% endif %} 
+                                </span>
+                                {% else %}
+                                <span class="mb-0 text-muted" style="color: maroon;">
+                                    {% if msg %}
+                                    <div class="i-block" data-clipboard-text="feather icon-x" data-filter="feather icon-x"  data-toggle="tooltip" title="">
+                                        <a style="color: maroon;" class="feather icon-x">{{ msg | safe }}</a>
+                                    </div>
+                                    {% endif %} 
+                                </span>
+                                
+                                
+                                {% endif %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    
+                                       
+
+
+                                        <form role="form" method="post" action="">
+                                            {{ form.hidden_tag() }}  
+                                            <div class="form-group">
+                                                <label>Giáo viên</label>
+                                                <select class="form-control" name="info-gv" style="width: 30%;margin-left: 20px;">
+                                                    {% for gv in listGv %}
+                                                    <option>{{gv.mgv}}-{{gv.fullname}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Môn học</label>
+                                                <select class="form-control" name="info-subject" style="width: 30%;margin-left: 20px;">
+                                                    {% for sub in listSub %}
+                                                    <option>{{sub.id}}-{{sub.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Lớp học</label>
+                                                <select class="form-control" name="info-class" style="width: 30%;margin-left: 20px;">
+                                                    {% for cl in listCl %}
+                                                    <option>{{cl.id}}-{{cl.name}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                           
+                                            <div class="form-group">
+                                                <label>Ngày bắt đầu</label>
+                                                {{ form.startDate(placeholder="", class="form-control", type="date") }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Ngày kết thúc</label>
+                                                {{ form.endDate(placeholder="", class="form-control", type="date") }}
+                                            </div>
+                                    
+                                            
+                                            <button type="submit" name="add_student" class="btn btn-primary">Submit</button>
+                                        </form>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

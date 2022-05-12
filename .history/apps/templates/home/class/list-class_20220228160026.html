@@ -1,0 +1,67 @@
+
+{% extends "layouts/base-admin.html" %}
+
+{% block title %} List Student {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    
+                    <!-- [ stiped-table ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            
+                            <div class="card-block table-border-style">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <td>Mã Lớp</td>
+                                           <td>Tên Lớp</td>
+                                           <td>Ghi chú</td>
+                                           
+                                        </thead>
+                                        {% for row in rows %}
+                                        <tr>
+                                            <td>{{ row.id }}</td>
+                                            <td>{{ row.name }}</td>
+                                            <td>{{ row.note }}</td>
+                                            <td class="row">
+                                                <div class="i-block" data-clipboard-text="feather icon-edit" data-filter="feather icon-edit"  data-toggle="tooltip" title="Edit">
+                                                    <a name="edit_user"  href="/class/{{ row.id }}/student" class="feather icon-plus"></a>
+                                                </div>|
+                                                <div class="i-block" data-clipboard-text="feather icon-edit" data-filter="feather icon-edit"  data-toggle="tooltip" title="Edit">
+                                                    <a href="/edit_student/{{ row.msv }}" class="feather icon-edit"></a>
+                                                </div>|
+                                                <div class="i-block" data-clipboard-text="feather icon-delete" data-filter="feather icon-delete"  data-toggle="tooltip" title="Delete">
+                                                    <a style="color: maroon;" href="/delete_student/{{ row.msv }}" class="feather icon-delete"></a>
+                                                </div>
+                                        </tr>
+                                     {% endfor %}
+                                         </tbody>
+                                     </table>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ stiped-table ] end -->
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

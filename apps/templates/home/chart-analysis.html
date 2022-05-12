@@ -1,0 +1,245 @@
+{% extends "layouts/base-admin.html" %}
+
+{% block title %} Charts {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="/static/assets/plugins/chart-morris/css/morris.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Analysis Chart</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Thống kê</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Biểu đồ phân tích</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <!-- [ Morris Chart ] start -->
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Biểu đồ phân tích số lượng điểm danh của sinh viên</h5>
+                            </div>
+                            <div class="card-block">
+                                <!-- <div id="morris-bar-chart" style="height:300px"></div> -->
+                                <canvas id="chart1" style="height:300px; width: 100%;"></canvas>
+                                <script>
+                                // bar chart data
+                                var barData = {
+                                    labels : [
+                                    {% for item in labels1 %}
+                                    "{{ item }}",
+                                    {% endfor %}
+                                ],
+                            
+                                    datasets : [{
+                                    fillColor: "rgba(151,187,205,0.2)",
+                                    strokeColor: "rgba(151,187,205,1)",
+                                    pointColor: "rgba(151,187,205,1)",
+                                    data : [
+                                        {% for item in values1 %}
+                                        "{{ item }}",
+                                        {% endfor %}
+                                    ]
+                                    }
+                                    ]
+                                }
+                            
+                                // get bar chart canvas
+                                var mychart = document.getElementById("chart1").getContext("2d");
+                            
+                                steps = 10
+                                max = 20
+                                // draw bar chart
+                                new Chart(mychart).Bar(barData, {
+                                scaleOverride: true,
+                                scaleSteps: steps,
+                                scaleStepWidth: Math.ceil(max / steps),
+                                scaleStartValue: 0,
+                                scaleShowVerticalLines: true,
+                                scaleShowGridLines : true,
+                                barShowStroke : true,
+                                scaleShowLabels: true
+                                }
+                                );
+                            
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Biểu đồ tổng số giờ học của sinh viên trong kỳ</h5>
+                            </div>
+                            <div class="card-block">
+                                <!-- <div id="morris-bar-stacked-chart" style="height:300px"></div> -->
+                                <canvas id="chart2" style="height:300px; width: 100%;"></canvas>
+                                <script>
+                                    // bar chart data
+                                    var barData = {
+                                        labels : [
+                                        {% for item in labels2 %}
+                                        "{{ item }}",
+                                        {% endfor %}
+                                    ],
+                                
+                                        datasets : [{
+                                        fillColor: "rgba(151,187,205,0.2)",
+                                        strokeColor: "rgba(151,187,205,1)",
+                                        pointColor: "rgba(151,187,205,1)",
+                                        data : [
+                                            {% for item in values2 %}
+                                            "{{ item }}",
+                                            {% endfor %}
+                                        ]
+                                        }
+                                        ]
+                                    }
+                                
+                                    // get bar chart canvas
+                                    var mychart = document.getElementById("chart2").getContext("2d");
+                                
+                                    steps = 10
+                                    max = 9
+                                    // draw bar chart
+                                    new Chart(mychart).Bar(barData, {
+                                    scaleOverride: true,
+                                    scaleSteps: steps,
+                                    scaleStepWidth: Math.ceil(max / steps),
+                                    scaleStartValue: 0,
+                                    scaleShowVerticalLines: true,
+                                    scaleShowGridLines : true,
+                                    barShowStroke : true,
+                                    scaleShowLabels: true
+                                    }
+                                    );
+                                
+                                    </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Biểu đồ số lượng điểm danh của từng sinh viên</h5>
+                            </div>
+                            <div class="card-block">
+                                <!-- <div id="morris-bar-stacked-chart" style="height:300px"></div> -->
+                                <canvas id="chart22" style="height:300px; width: 100%;"></canvas>
+                                <script>
+                                    // bar chart data
+                                    var barData = {
+                                        labels : [
+                                        {% for item in labels3 %}
+                                        "{{ item }}",
+                                        {% endfor %}
+                                    ],
+                                
+                                        datasets : [{
+                                        fillColor: "rgba(151,187,205,0.2)",
+                                        strokeColor: "rgba(151,187,205,1)",
+                                        pointColor: "rgba(151,187,205,1)",
+                                        data : [
+                                            {% for item in values3 %}
+                                            "{{ item }}",
+                                            {% endfor %}
+                                        ]
+                                        }
+                                        ]
+                                    }
+                                
+                                    // get bar chart canvas
+                                    var mychart = document.getElementById("chart22").getContext("2d");
+                                
+                                    steps = 10
+                                    max = 9
+                                    // draw bar chart
+                                    new Chart(mychart).Bar(barData, {
+                                    scaleOverride: true,
+                                    scaleSteps: steps,
+                                    scaleStepWidth: Math.ceil(max / steps),
+                                    scaleStartValue: 0,
+                                    scaleShowVerticalLines: true,
+                                    scaleShowGridLines : true,
+                                    barShowStroke : true,
+                                    scaleShowLabels: true
+                                    }
+                                    );
+                                
+                                    </script>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Biểu đồ tỷ lệ cấm thi của sinh viên</h5>
+                            </div>
+                            <div class="card-block">
+                                <!-- <div id="morris-line-chart" class="ChartShadow" style="height:300px"></div> -->
+                                <canvas id="chart4" style="height:300px; width: 100%;"></canvas>
+                                <script>
+                                    // bar chart data
+                                    var pieData = [
+                                        {% for item, label, colors in set %}
+                                        {
+                                            value: {{item}},
+                                            label: "{{label}}",
+                                            color : "{{colors}}"
+                                        },
+                                        {% endfor %}
+                                    ];
+                            
+                                    // get bar chart canvas
+                                    var mychart = document.getElementById("chart4").getContext("2d");
+                                    steps = 10
+                                    max = {{ max }}
+                            
+                                    // draw pie chart
+                                    new Chart(document.getElementById("chart4").getContext("2d")).Pie(pieData);
+                              
+                                  </script>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- [ Morris Chart ] end -->
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    
+
+{% endblock javascripts %}

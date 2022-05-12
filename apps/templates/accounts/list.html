@@ -1,0 +1,62 @@
+
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    
+                    <!-- [ stiped-table ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            
+                            <div class="card-block table-border-style">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                           <td>No</td>
+                                           <td>Student code</td>
+                                           <td>First name</td>
+                                           <td>Last name</td>
+                                           <td>DOB</td>
+                                           <td>CN</td>
+                                        </thead>
+                                        {% for i,row in rows %}
+                                        <tr>
+                                           <td>{{row['No']}}</td>
+                                           <td>{{row['student code']}}</td>
+                                           <td> {{row['First name']}}</td>
+                                           <td>{{row['Last name']}}</td>
+                                           <td>{{row['DOB']}}</td>
+                                           <td>{{row['CN']}}</td>	
+                                        </tr>
+                                     {% endfor %}
+                                         </tbody>
+                                     </table>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ stiped-table ] end -->
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

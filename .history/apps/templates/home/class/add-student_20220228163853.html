@@ -1,0 +1,97 @@
+
+{% extends "layouts/base-admin.html" %}
+
+{% block title %} Attendance List {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Attendance</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Thống kê</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Điểm danh</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    
+                    <!-- [ stiped-table ] start -->
+                    <div class="col-xl-12">
+                        <div class="card">
+                            
+                            <div class="card-block table-border-style">
+                                
+                                <div class="table-responsive">
+                                    
+                                    <form action="/class/{{ idClass }}/add-student" method="post" class="row">
+                                        <div class="form-outline">
+                                            <input type="search" id="form1" name="msv" 
+                                            class="form-control" />
+                                            <label class="form-label" for="form1">Search</label>
+                                          </div>
+                                        <button type="submit" name="find_student" class="btn btn-info" title="Search" data-toggle="tooltip" style="margin-left: 10px;">Search</button>
+                                    </form>
+                                    
+                                    
+                                    
+                                    <br>
+                                    <br>
+                                    <table class="table table-striped">
+                                        <thead>
+                                           <td>Mã sinh viên</td>
+                                           <td>Tên sinh viên</td>
+                                          
+                                           
+                                        </thead>
+                                       
+                                        <tr>
+                                            <td>{{ student.msv }}</td>
+                                            <td>{{ student.name }}</td>
+                                           
+                                            <td style="color: green;">
+                                                <form action="/class/{{ idClass }}/add-student" method="post" class="row">
+                                                    <input type="hidden" id="form1" name="msv" value="{{student.id}}"
+                                                    class="form-control" />
+                                                    <button type="submit" name="add_student" class="btn btn-info" title="Search" data-toggle="tooltip" style="margin-left: 10px;">Thêm</button>
+                                                </form>
+                                            </td>
+                                            
+                                        </tr>
+                                       
+                                        </tbody>
+                                     </table>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ stiped-table ] end -->
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
